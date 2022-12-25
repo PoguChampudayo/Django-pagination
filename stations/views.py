@@ -15,9 +15,9 @@ def bus_stations(request):
     # также передайте в контекст список станций на странице
     with open(settings.BUS_STATION_CSV, encoding='utf-8') as f:
         file_reader = list(csv.DictReader(f))
-    pages = Paginator(file_reader, 10)   
+    bus_stations = Paginator(file_reader, 10)   
     needed_page = request.GET.get('page', 1) 
-    page = pages.get_page(needed_page)
+    page = bus_stations.get_page(needed_page)
     context = {
          'bus_stations': page,
          'page': page,
